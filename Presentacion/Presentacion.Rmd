@@ -1,0 +1,83 @@
+---
+title: "Presentacion del Dashboard"
+author: "Emma"
+date: "2024-07-22"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+
+df_dep <- read.csv("Datos/datos_depurado.csv")
+```
+
+## Introducción
+
+El propósito de esta presentación es mostrar los hallazgos clave derivados de la encuesta sobre prioridades y sentimientos relacionados con los ingresos del hogar.
+
+## Distribución de Sentimientos sobre los Ingresos del Hogar
+
+Este gráfico de barras muestra cómo se distribuyen los sentimientos de los encuestados sobre sus ingresos actuales.
+
+
+```{r}
+library(ggplot2)
+ggplot(df_dep, aes(x = hincfel)) +
+  geom_bar() +
+  labs(title = "Distribución de Sentimientos sobre los Ingresos del Hogar", 
+       x = "Sentimiento sobre los Ingresos del Hogar", 
+       y = "Frecuencia")
+```
+
+## Prioridad de Eliminar la Pobreza
+
+Este gráfico de barras agrupadas muestra cómo los encuestados priorizan la eliminación de la pobreza, desglosado por su sentimiento sobre los ingresos.
+
+```{r}
+ggplot(df_dep, aes(x = w4q1, fill = hincfel)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Prioridad de Eliminar la Pobreza por Ingresos del Hogar", 
+       x = "Prioridad de Eliminar la Pobreza", 
+       y = "Frecuencia",
+       fill = "Sentimiento sobre los Ingresos del Hogar")
+```
+
+## Prioridad de Facilitar la Vida a las Familias
+
+Este gráfico muestra la prioridad dada a facilitar la vida de las familias según el sentimiento sobre los ingresos.
+
+```{r}
+ggplot(df_dep, aes(x = w4q2, fill = hincfel)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Prioridad de Facilitar la Vida a las Familias por Ingresos del Hogar", 
+       x = "Prioridad de Facilitar la Vida a las Familias", 
+       y = "Frecuencia",
+       fill = "Sentimiento sobre los Ingresos del Hogar")
+```
+
+## Prioridad de Maximizar la Prosperidad Económica
+
+Este gráfico ilustra cómo los encuestados priorizan la maximización de la prosperidad económica según su sentimiento sobre los ingresos.
+
+```{r}
+ggplot(df_dep, aes(x = w4q10, fill = hincfel)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Prioridad de Maximizar la Prosperidad Económica por Ingresos del Hogar", 
+       x = "Prioridad de Maximizar la Prosperidad Económica", 
+       y = "Frecuencia",
+       fill = "Sentimiento sobre los Ingresos del Hogar")
+```
+
+## Conclusión
+
+Los resultados de esta encuesta proporcionan una comprensión valiosa de las prioridades y sentimientos de los encuestados en relación con sus ingresos del hogar. Es evidente que hay una fuerte correlación entre las dificultades económicas percibidas y la importancia dada a las prioridades sociales y económicas.
+
+## Recomendaciones
+
+- **Políticas de Apoyo**: Implementar políticas que aborden las dificultades económicas puede ser crucial para mejorar el bienestar general.
+
+- **Facilitación de la Vida Familiar**: Las políticas que faciliten la vida de las familias deben ser priorizadas, ya que esto es una preocupación común entre los encuestados.
+
+- **Prosperidad Económica**: Fomentar la prosperidad económica puede ayudar a aliviar algunas de las tensiones relacionadas con los ingresos del hogar.
+
